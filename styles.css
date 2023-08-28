@@ -31,16 +31,21 @@ body {
   font-family: 'Roboto Flex', sans-serif;
   background-color: var(--blue);
   color: var(--blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
-  min-height: 80px;
-  padding: 10px 40px;
+  min-height: 6vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: var(--orange);
   box-shadow: var(--shadow);
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 header > h1 {

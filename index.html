@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <script src="https://kit.fontawesome.com/3ef1768f2a.js" crossorigin="anonymous"></script>
   <script src="./script.js" defer></script>
-  <title>Nogiback's Book Library </title>
+  <title>Nogiback's Book Library</title>
 </head>
 <body>
   <header>
@@ -17,6 +17,25 @@
   </header>
 
   <div class="bookshelf"></div>
+
+  <section class="add-book-dialog">
+    <dialog id="container">
+      <h1>New Book</h1>
+      <button id="close-modal"><i class="material-symbols-outlined">close</i></button>
+      <form action="/" method="get" id="form">
+        <input type="text" id="title" name="title" placeholder="Book Title" required/>
+        <input type="text" id="author" name="author" placeholder="Author" required/>
+        <input type="number" id="pages" name="pages" placeholder="Pages" required/>
+        <select name="read" id="read">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </form>
+      
+    </dialog>
+  </section>
+
+
 
   <footer class="footer">
     <p>Built by Nogiback</p>
