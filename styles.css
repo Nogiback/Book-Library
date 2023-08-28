@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,400&display=swap');
 
 :root {
   --blue: #1e3a8a;
@@ -28,14 +28,14 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Flex', sans-serif;
   background-color: var(--blue);
   color: var(--blue);
 }
 
 header {
   min-height: 80px;
-  padding: 10px;
+  padding: 10px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
