@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+:root {
+  --blue: #1e3a8a;
+  --orange: #f59e0b;
+  --white: #f3f3f3;
+  --shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: normal;
+    font: inherit;
+    box-sizing: inherit;
+}
+
+.material-symbols-outlined {
+  vertical-align: bottom;
+}
+
+.fab {
+  color: var(--blue);
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--blue);
+  color: var(--blue);
+}
+
+header {
+  min-height: 80px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--orange);
+  box-shadow: var(--shadow);
+}
+
+header > h1 {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+button {
+  color: var(--blue);
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  min-width: 120px;
+  cursor: pointer;
+  position: relative;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.0);
+}
+
+button:active {
+  top: 2px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100vw;
+  padding: 10px;
+  font-size: 20px;
+  background: var(--orange);
+}
