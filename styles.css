@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,400&display=swap');
 
 :root {
-  --blue: #1e3a8a;
-  --orange: #f59e0b;
-  --white: #f3f3f3;
+  --blue: rgb(30, 58, 138);
+  --orange: rgb(245, 158, 11);
+  --white: rgb(243, 243, 243);
   --shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
@@ -20,7 +20,8 @@
 }
 
 .material-symbols-outlined {
-  vertical-align: bottom;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 .fab {
@@ -37,7 +38,8 @@ body {
 }
 
 header {
-  min-height: 6vh;
+  width: 100%;
+  min-height: 80px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -45,32 +47,36 @@ header {
   box-shadow: var(--shadow);
   position: absolute;
   top: 0;
-  width: 100%;
 }
 
 header > h1 {
   font-size: 2rem;
   font-weight: 900;
 }
-header button {
-  color: var(--blue);
+#add-book {
+  color: var(--orange);
   padding: 0.5rem;
   font-size: 1.1rem;
   border-radius: 50px;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: var(--blue);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-bottom: 20px;
-  margin-top: 20px;
   min-width: 120px;
-  cursor: pointer;
   position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-header button:hover {
-  background-color: rgba(0, 0, 0, 0.0);
+#add-book:hover,
+#confirm-btn:hover {
+  background-color: var(--orange);
+  color: var(--blue);
+  transition: 0.3s ease;
 }
 
-header button:active {
+#add-book:active,
+#confirm-btn:active {
   top: 2px;
 }
 
@@ -79,10 +85,9 @@ header button:active {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 100%;
-  min-height: 500px;
-  max-height: 100%;
-  padding: 1.5rem;
+  width: 300px;
+  height: 400px;
+  padding: 2rem;
   box-shadow: var(--shadow);
   border-radius: 10px;
   background-color: var(--orange);
@@ -96,8 +101,59 @@ header button:active {
 }
 
 #close-modal .material-symbols-outlined {
+  margin: 0;
   font-size: 2rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: var(--blue);
+  border: 1px solid var(--blue);
 }
+
+#close-modal .material-symbols-outlined:hover {
+ color: red;
+ transition: 0.3s ease;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#container input[type="text"],
+#container input[type="number"],
+#container select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid var(--blue);
+  background: var(--white);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+#container label[for="read"] {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  color: var(--blue);
+  font-size: 1.2rem;
+}
+
+#confirm-btn {
+  color: var(--orange);
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  background-color: var(--blue);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  min-width: 120px;
+  position: relative;
+  cursor: pointer;
+}
+
 
 .footer {
   position: absolute;
