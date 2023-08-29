@@ -25,13 +25,14 @@
       <form action="/" method="get" id="form">
         <input type="text" id="title" name="title" placeholder="Book Title" required/>
         <input type="text" id="author" name="author" placeholder="Author" required/>
-        <input type="number" id="pages" name="pages" placeholder="Pages" required/>
+        <input type="number" id="pages" name="pages" placeholder="Pages" min="1" max="25000" required/>
+        <label for="read">Read Book?</label>
         <select name="read" id="read">
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
+        <button id="confirm-btn" value="default">Confirm</button>
       </form>
-      
     </dialog>
   </section>
 

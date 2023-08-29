@@ -2,10 +2,15 @@
 
 const addBookBtn = document.getElementById('add-book');
 const addBookDialog = document.getElementById('container');
+const closeModal = document.getElementById('close-modal');
 
 addBookBtn.addEventListener('click', () => {
   addBookDialog.showModal();
 });
+
+closeModal.addEventListener('click', () => {
+  addBookDialog.close();
+})
 
 let library = JSON.parse(localStorage.getItem("books")) || [];
 
