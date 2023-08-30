@@ -98,7 +98,8 @@ function displayBooks() {
 
     deleteButton.addEventListener('click', () => {
       bookshelf.removeChild(bookCard);
-      books.splice(book, 1);
+      books.splice(i, 1);
+      console.log(books);
     });
   });
 }
