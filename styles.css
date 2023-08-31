@@ -59,6 +59,10 @@ header > h1 {
   font-weight: 900;
 }
 
+header #logo {
+  font-size: 2.5rem;
+}
+
 #add-book {
   color: var(--lightgreen);
   padding: 0.5rem;
@@ -95,16 +99,16 @@ header > h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
-  height: 400px;
+  height: 410px;
   padding: 2rem;
   box-shadow: var(--shadow);
   border-radius: 10px;
-  background-color: var(--orange);
-  border: 2px solid rgb(11, 22, 53);
+  background-color: var(--darkgreen);
+  border: 2px solid var(--lightgreen);
 }
 
 #container h1 {
-  color: var(--blue);
+  color: var(--lightgreen);
   text-align: center;
   padding: 0.5rem;
   font-size: 2rem;
@@ -117,8 +121,8 @@ header > h1 {
   top: 10px;
   right: 10px;
   cursor: pointer;
-  color: var(--blue);
-  border: 1px solid var(--blue);
+  color: var(--lightgreen);
+  border: 1px solid var(--lightgreen);
 }
 
 #close-modal .material-symbols-outlined:hover {
@@ -139,7 +143,7 @@ form {
   display: block;
   width: 100%;
   padding: 0.5rem;
-  border: 2px solid var(--blue);
+  border: 2px solid var(--lightgreen);
   background: var(--white);
   font-size: 1rem;
   margin-bottom: 20px;
@@ -148,16 +152,17 @@ form {
 #container label[for="read"] {
   padding-top: 20px;
   padding-bottom: 10px;
-  color: var(--blue);
+  color: var(--lightgreen);
   font-size: 1.2rem;
 }
 
 #confirm-btn {
-  color: var(--orange);
+  color: var(--lightgreen);
   padding: 0.5rem;
   font-size: 1.1rem;
   border-radius: 50px;
-  background-color: var(--blue);
+  border: 1px solid var(--lightgreen);
+  background-color: var(--darkgreen);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   min-width: 120px;
   position: relative;
@@ -188,7 +193,7 @@ form {
 }
 
 .book {
-  background-color: var(--green);
+  background-color: var(--lightgreen);
   display: flex;
   flex-direction: column;
   align-items:flex-start;
@@ -210,7 +215,8 @@ form {
 }
 
 .book h4 {
-  color: var(--darkgreen)
+  color: var(--darkgreen);
+  font-size: 0.9rem;
 }
 
 .book button {
