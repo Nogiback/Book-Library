@@ -3,6 +3,7 @@
 const addBookBtn = document.getElementById('add-book');
 const addBookDialog = document.getElementById('container');
 const closeModal = document.getElementById('close-modal');
+const overlay = document.querySelector('.overlay');
 const bookshelf = document.querySelector('.bookshelf');
 
 let library = JSON.parse(localStorage.getItem("books")) || [];
@@ -10,20 +11,22 @@ let library = JSON.parse(localStorage.getItem("books")) || [];
 
 addBookBtn.addEventListener('click', () => {
   addBookDialog.showModal();
+  overlay.style.display = 'block';
 });
 
 closeModal.addEventListener('click', () => {
   addBookDialog.close();
+  overlay.style.display = 'none';
 });
 
-// class Book {
-//   constructor(title, author, pages, read) {
-//     this.title = title;
-//     this.author = author;
-//     this.pages = pages;
-//     this.read = read;
-//   }
-// }
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+}
 
 const books = [
   {
@@ -49,6 +52,30 @@ const books = [
     author: 'Book Person4',
     pages: 420,
     read: 'No'
+  },
+  {
+    title: 'Book 5',
+    author: 'Book Person5',
+    pages: 923,
+    read: 'Yes'
+  },
+  {
+    title: 'Book 6',
+    author: 'Book Person6',
+    pages: 251,
+    read: 'No'
+  },
+  {
+    title: 'Book 7',
+    author: 'Book Person7',
+    pages: 6969,
+    read: 'No'
+  },
+  {
+    title: 'Book 8',
+    author: 'Book Person8',
+    pages: 519,
+    read: 'Yes'
   }
 ];
 
