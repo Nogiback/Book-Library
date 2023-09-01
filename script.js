@@ -11,7 +11,7 @@ const authorField = document.querySelector('#author');
 const pagesField = document.querySelector('#pages');
 const readField = document.querySelector('#read');
 
-let books = [];
+let library = [];
 
 class Book {
   constructor(title, author, pages, read) {
@@ -23,11 +23,12 @@ class Book {
 }
 
 Book.prototype.pushBook = function() {
-  books.push(this);
+  library.push(this);
 }
 
 addBookBtn.addEventListener('click', () => {
   addBookDialog.showModal();
+  titleField.focus();
   overlay.style.display = 'block';
 });
 
@@ -41,6 +42,7 @@ submitBtn.addEventListener('click', (e) => {
   addBookToLibrary(titleField.value, authorField.value, pagesField.value, readField.value);
   resetBookshelf();
   displayBooks();
+  saveBooks();
   addBookDialog.close();
   overlay.style.display = 'none';
 });
@@ -63,14 +65,14 @@ function addBookToLibrary (title, author, pages, read) {
 }
 
 function displayBooks() {
-  if (books.length === 0) {
+  if (library.length === 0) {
     let emptyMessage = document.createElement('h1');
     emptyMessage.classList.add('empty');
     emptyMessage.textContent = `Your library is currently empty. Click 'Add Book' to begin...`;
     bookshelf.appendChild(emptyMessage);
   }
 
-  books.forEach(function (book, i) {
+  library.forEach(function (book, i) {
     let bookCard = document.createElement('div');
     bookCard.classList.add('book');
     bookCard.setAttribute('data-index', `${i}`);
@@ -120,22 +122,39 @@ function resetBookshelf () {
 
 function deleteBook (deleteButton) {
   let index = deleteButton.parentNode.getAttribute('data-index');
-  books.splice(index, 1);
+  library.splice(index, 1);
   resetBookshelf();
   displayBooks();
+  saveBooks();
 }
 
 function updateReadStatus(updateButton) {
   let index = updateButton.parentNode.getAttribute('data-index');
-  if (books[index].read === 'Completed') {
-    books[index].read = 'Not Read';
+  if (library[index].read === 'Completed') {
+    library[index].read = 'Not Read';
     updateButton.textContent = 'Completed';
   } else {
-    books[index].read = 'Completed';
+    library[index].read = 'Completed';
     updateButton.textContent = 'Not Read';
   };
   resetBookshelf();
   displayBooks();
+  saveBooks();
+}
+
+function saveBooks() {
+  localStorage.setItem('savedLibrary', JSON.stringify(library));
+  console.log(localStorage.savedLibrary);
+}
+
+function restoreBooks() {
+  if (localStorage.savedLibrary) {
+    const storedLibrary = localStorage.getItem('savedLibrary');
+    library = JSON.parse(storedLibrary);
+    displayBooks();
+  } else {
+    return;
+  };
 }
 
 window.addEventListener("load", displayBooks);
