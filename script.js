@@ -42,7 +42,6 @@ submitBtn.addEventListener('click', (e) => {
   addBookToLibrary(titleField.value, authorField.value, pagesField.value, readField.value);
   resetBookshelf();
   displayBooks();
-  saveBooks();
   addBookDialog.close();
   overlay.style.display = 'none';
 });
@@ -125,7 +124,6 @@ function deleteBook (deleteButton) {
   library.splice(index, 1);
   resetBookshelf();
   displayBooks();
-  saveBooks();
 }
 
 function updateReadStatus(updateButton) {
@@ -139,22 +137,6 @@ function updateReadStatus(updateButton) {
   };
   resetBookshelf();
   displayBooks();
-  saveBooks();
 }
 
-function saveBooks() {
-  localStorage.setItem('savedLibrary', JSON.stringify(library));
-  console.log(localStorage.savedLibrary);
-}
-
-function restoreBooks() {
-  if (localStorage.savedLibrary) {
-    const storedLibrary = localStorage.getItem('savedLibrary');
-    library = JSON.parse(storedLibrary);
-    displayBooks();
-  } else {
-    return;
-  };
-}
-
-window.addEventListener("load", displayBooks);
+window.addEventListener('load', displayBooks);
