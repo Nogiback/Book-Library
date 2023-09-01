@@ -82,14 +82,14 @@ header #logo {
 }
 
 #add-book:hover,
-#confirm-btn:hover{
+#submit-btn:hover{
   background-color: var(--lightgreen);
   color: var(--darkgreen);
   transition: 0.3s ease;
 }
 
 #add-book:active,
-#confirm-btn:active,
+#submit-btn:active,
 .book button:active {
   top: 2px;
 }
@@ -159,7 +159,7 @@ form {
   font-size: 1.2rem;
 }
 
-#confirm-btn {
+#submit-btn {
   color: var(--lightgreen);
   padding: 0.5rem;
   font-size: 1.1rem;
@@ -207,9 +207,9 @@ form {
   width: 350px;
   height: 200px;
   border-radius: 10px;
-  border: 2px solid var(--black);
+  border-left: 10px solid rgb(15, 39, 39);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 10px;
+  padding: 1rem;
 }
 
 .book:hover {
@@ -246,6 +246,12 @@ form {
   color: var(--lightgreen);
   border: 1px solid var(--lightgreen);
   transition: 0.3s ease;
+}
+
+.empty {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-top: 36vh;
 }
 
 /*-------------------------------- FOOTER ----------------------------------------*/

@@ -1,11 +1,30 @@
 const addBookBtn = document.getElementById('add-book');
 const addBookDialog = document.getElementById('container');
 const closeModal = document.getElementById('close-modal');
+const submitBtn = document.querySelector('#submit-btn');
+const form = document.querySelector('#form');
 const overlay = document.querySelector('.overlay');
 const bookshelf = document.querySelector('.bookshelf');
 
-let library = [];
+const titleField = document.querySelector('#title');
+const authorField = document.querySelector('#author');
+const pagesField = document.querySelector('#pages');
+const readField = document.querySelector('#read');
 
+let books = [];
+
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  };
+}
+
+Book.prototype.pushBook = function() {
+  books.push(this);
+}
 
 addBookBtn.addEventListener('click', () => {
   addBookDialog.showModal();
@@ -17,79 +36,40 @@ closeModal.addEventListener('click', () => {
   overlay.style.display = 'none';
 });
 
+submitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  addBookToLibrary(titleField.value, authorField.value, pagesField.value, readField.value);
+  resetBookshelf();
+  displayBooks();
+  addBookDialog.close();
+  overlay.style.display = 'none';
+});
+
 document.addEventListener('click', (e) => {
   if (e.target.className === 'delete') {
     deleteBook(e.target);
-    console.log(e.target.parentNode);
   };
 
   if(e.target.className === 'update') {
     updateReadStatus(e.target);
-  } ;
+  };
 
 });
 
-class Book {
-  constructor(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-  };
-};
-
-const books = [
-  {
-    title: 'The Curious Incident of the Dog in the Night-time',
-    author: 'Mark Haddon',
-    pages: 274,
-    read: 'Completed'
-  },
-  {
-    title: 'Book 2',
-    author: 'Book Person2',
-    pages: 1242,
-    read: 'Not Read'
-  },
-  {
-    title: 'Book 3',
-    author: 'Book Person3',
-    pages: 999,
-    read: 'Completed'
-  },
-  {
-    title: 'Book 4',
-    author: 'Book Person4',
-    pages: 420,
-    read: 'Not Read'
-  },
-  {
-    title: 'Book 5',
-    author: 'Book Person5',
-    pages: 923,
-    read: 'Completed'
-  },
-  {
-    title: 'Book 6',
-    author: 'Book Person6',
-    pages: 251,
-    read: 'Not Read'
-  },
-  {
-    title: 'Book 7',
-    author: 'Book Person7',
-    pages: 6969,
-    read: 'Completed'
-  },
-  {
-    title: 'Book 8',
-    author: 'Book Person8',
-    pages: 519,
-    read: 'Completed'
-  }
-];
+function addBookToLibrary (title, author, pages, read) {
+  let newBook = new Book(title, author, pages, read);
+  newBook.pushBook();
+  form.reset();
+}
 
 function displayBooks() {
+  if (books.length === 0) {
+    let emptyMessage = document.createElement('h1');
+    emptyMessage.classList.add('empty');
+    emptyMessage.textContent = `Your library is currently empty. Click 'Add Book' to begin...`;
+    bookshelf.appendChild(emptyMessage);
+  }
+
   books.forEach(function (book, i) {
     let bookCard = document.createElement('div');
     bookCard.classList.add('book');
@@ -108,7 +88,7 @@ function displayBooks() {
     pagesLabel.textContent = `Pages: ${book.pages}`;
 
     let readLabel = document.createElement('h4');
-    readLabel.textContent = `${book.read}`;
+    readLabel.textContent = `Status: ${book.read}`;
 
     let updateButton = document.createElement('button');
     updateButton.classList.add('update');
@@ -157,6 +137,5 @@ function updateReadStatus(updateButton) {
   resetBookshelf();
   displayBooks();
 }
-
 
 window.addEventListener("load", displayBooks);
