@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,400&display=swap');
 
 :root {
-  --blue: rgb(30, 58, 138);
-  --orange: rgb(245, 158, 11);
+  /* --blue: rgb(30, 58, 138);
+  --orange: rgb(245, 158, 11); */
   --white: rgb(243, 243, 243);
   --black: rgb(4, 13, 18);
   --darkgreen: rgb(24, 61, 61);
@@ -34,12 +34,14 @@
 
 body {
   font-family: 'Roboto Flex', sans-serif;
-  background-color: var(--lightgreen);
+  background-color: var(--green);
   color: var(--lightgreen);
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+/*-------------------------------- HEADER ----------------------------------------*/
 
 header {
   width: 100%;
@@ -80,8 +82,7 @@ header #logo {
 }
 
 #add-book:hover,
-#confirm-btn:hover,
-.book button:hover {
+#confirm-btn:hover{
   background-color: var(--lightgreen);
   color: var(--darkgreen);
   transition: 0.3s ease;
@@ -92,6 +93,8 @@ header #logo {
 .book button:active {
   top: 2px;
 }
+
+/*-------------------------------- FORM MODAL ----------------------------------------*/
 
 #container {
   position: fixed;
@@ -180,6 +183,8 @@ form {
   z-index: 1000;
 }
 
+/*-------------------------------- MAIN CONTENT / BOOK CARDS ----------------------------------------*/
+
 .bookshelf {
   display: flex;
   flex-wrap: wrap;
@@ -193,7 +198,7 @@ form {
 }
 
 .book {
-  background-color: var(--lightgreen);
+  background-color: var(--darkgreen);
   display: flex;
   flex-direction: column;
   align-items:flex-start;
@@ -202,35 +207,48 @@ form {
   width: 350px;
   height: 200px;
   border-radius: 10px;
-  border: 2px solid var(--darkgreen);
+  border: 2px solid var(--black);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 10px;
 }
 
+.book:hover {
+  background-color: rgba(24, 61, 61, 0.7);
+}
+
 .book h3 {
-  color: var(--darkgreen);
+  color: var(--lightgreen);
   font-size: 1.3rem;
   font-weight: 900;
 
 }
 
 .book h4 {
-  color: var(--darkgreen);
+  color: var(--lightgreen);
   font-size: 0.9rem;
 }
 
 .book button {
-  color: var(--lightgreen);
+  color: var(--darkgreen);
   padding: 0.6rem;
   font-size: 0.8rem;
   border-radius: 50px;
-  background-color: var(--darkgreen);
+  background-color: var(--lightgreen);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   min-width: 100px;
   position: relative;
   cursor: pointer;
   align-self: center;
 }
+
+.book button:hover {
+  background-color: var(--darkgreen);
+  color: var(--lightgreen);
+  border: 1px solid var(--lightgreen);
+  transition: 0.3s ease;
+}
+
+/*-------------------------------- FOOTER ----------------------------------------*/
 
 .footer {
   position: fixed;
@@ -241,6 +259,6 @@ form {
   gap: 10px;
   width: 100%;
   padding: 10px 0px;
-  font-size: 20px;
+  font-size: 1.1rem;
   background: var(--darkgreen);
 }

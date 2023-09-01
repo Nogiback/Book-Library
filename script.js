@@ -1,12 +1,10 @@
-'use strict';
-
 const addBookBtn = document.getElementById('add-book');
 const addBookDialog = document.getElementById('container');
 const closeModal = document.getElementById('close-modal');
 const overlay = document.querySelector('.overlay');
 const bookshelf = document.querySelector('.bookshelf');
 
-let library = JSON.parse(localStorage.getItem("books")) || [];
+let library = [];
 
 
 addBookBtn.addEventListener('click', () => {
@@ -19,14 +17,26 @@ closeModal.addEventListener('click', () => {
   overlay.style.display = 'none';
 });
 
+document.addEventListener('click', (e) => {
+  if (e.target.className === 'delete') {
+    deleteBook(e.target);
+    console.log(e.target.parentNode);
+  };
+
+  if(e.target.className === 'update') {
+    updateReadStatus(e.target);
+  } ;
+
+});
+
 class Book {
   constructor(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-  }
-}
+  };
+};
 
 const books = [
   {
@@ -119,25 +129,34 @@ function displayBooks() {
     bookCard.appendChild(updateButton);
     bookCard.appendChild(deleteButton);
     bookshelf.appendChild(bookCard);
-
-    updateButton.addEventListener('click', () => {
-      if (readLabel.textContent === `Completed`) {
-        readLabel.textContent = 'Not Read';
-        updateButton.textContent = 'Completed';
-        book.read = 'Not Read';
-      } else {
-        readLabel.textContent = 'Completed';
-        updateButton.textContent = 'Not Read';
-        book.read = 'Completed';
-      };
-    });
-
-    deleteButton.addEventListener('click', () => {
-      bookshelf.removeChild(bookCard);
-      books.splice(i, 1);
-      console.log(books);
-    });
   });
 }
+
+function resetBookshelf () {
+  while (bookshelf.firstChild) {
+    bookshelf.removeChild(bookshelf.firstChild);
+  };
+}
+
+function deleteBook (deleteButton) {
+  let index = deleteButton.parentNode.getAttribute('data-index');
+  books.splice(index, 1);
+  resetBookshelf();
+  displayBooks();
+}
+
+function updateReadStatus(updateButton) {
+  let index = updateButton.parentNode.getAttribute('data-index');
+  if (books[index].read === 'Completed') {
+    books[index].read = 'Not Read';
+    updateButton.textContent = 'Completed';
+  } else {
+    books[index].read = 'Completed';
+    updateButton.textContent = 'Not Read';
+  };
+  resetBookshelf();
+  displayBooks();
+}
+
 
 window.addEventListener("load", displayBooks);
