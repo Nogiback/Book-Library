@@ -239,6 +239,7 @@ form {
   position: relative;
   cursor: pointer;
   align-self: center;
+  border: 1px solid transparent;
 }
 
 .book button:hover {
