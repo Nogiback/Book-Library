@@ -11,8 +11,6 @@ const authorField = document.querySelector('#author');
 const pagesField = document.querySelector('#pages');
 const readField = document.querySelector('#read');
 
-let library = [];
-
 class Book {
   constructor(title, author, pages, read) {
     this.title = title;
@@ -22,30 +20,44 @@ class Book {
   }
 }
 
-// class Storage {
-//   static getLibrary() {
-//     const library = [];
-//     localStorage.getItem('library') === null
-//       ? (library = [])
-//       : (library = JSON.parse(localStorage.getItem('library')));
-//     return library;
-//   }
+class Storage {
+  static getLibrary() {
+    let library = [];
+    localStorage.getItem('library') === null
+      ? (library = [])
+      : (library = JSON.parse(localStorage.getItem('library')));
+    return library;
+  }
 
-//   static addBook(book) {
-//     const library = Storage.getLibrary();
-//     library.push(book);
-//     localStorage.setItem('library', JSON.stringify(library));
-//   }
+  static saveLibrary(library) {
+    localStorage.setItem('library', JSON.stringify(library));
+  }
 
-//   static deleteBook(book) {
-//     const library = Storage.getLibrary();
+  static addBook(book) {
+    const library = Storage.getLibrary();
+    library.push(book);
+    Storage.saveLibrary(library);
+  }
 
-//   }
-// }
+  static deleteBook(bookTitle) {
+    const library = Storage.getLibrary();
+    library.forEach((book, index) => {
+      book.title === bookTitle ? library.splice(index, 1) : library;
+    });
+    Storage.saveLibrary(library);
+  }
 
-Book.prototype.pushBook = function () {
-  library.push(this);
-};
+  static updateReadStatus(bookTitle, status) {
+    const library = Storage.getLibrary();
+    library.forEach((book) => {
+      if (book.title !== bookTitle) {
+        return;
+      }
+      book.read = status;
+    });
+    Storage.saveLibrary(library);
+  }
+}
 
 addBookBtn.addEventListener('click', () => {
   addBookDialog.showModal();
@@ -78,7 +90,7 @@ submitBtn.addEventListener('click', (e) => {
 
 document.addEventListener('click', (e) => {
   if (e.target.className === 'delete') {
-    deleteBook(e.target);
+    deleteBook(e.target.parentNode.firstChild.textContent);
   }
 
   if (e.target.className === 'update') {
@@ -88,11 +100,13 @@ document.addEventListener('click', (e) => {
 
 function addBookToLibrary(title, author, pages, read) {
   let newBook = new Book(title, author, pages, read);
-  newBook.pushBook();
+  Storage.addBook(newBook);
   form.reset();
 }
 
 function displayBooks() {
+  const library = Storage.getLibrary();
+
   if (library.length === 0) {
     let emptyMessage = document.createElement('h1');
     emptyMessage.classList.add('empty');
@@ -146,21 +160,21 @@ function resetBookshelf() {
   bookshelf.textContent = '';
 }
 
-function deleteBook(deleteButton) {
-  let index = deleteButton.parentNode.getAttribute('data-index');
-  library.splice(index, 1);
+function deleteBook(bookToDelete) {
+  Storage.deleteBook(bookToDelete);
   resetBookshelf();
   displayBooks();
 }
 
 function updateReadStatus(updateButton) {
-  let index = updateButton.parentNode.getAttribute('data-index');
-  if (library[index].read === 'Completed') {
-    library[index].read = 'Not Read';
-    updateButton.textContent = 'Completed';
-  } else {
-    library[index].read = 'Completed';
+  const bookTitle = updateButton.parentNode.firstChild.textContent;
+
+  if (updateButton.textContent === 'Completed') {
     updateButton.textContent = 'Not Read';
+    Storage.updateReadStatus(bookTitle, 'Completed');
+  } else {
+    updateButton.textContent = 'Completed';
+    Storage.updateReadStatus(bookTitle, 'Not Read');
   }
   resetBookshelf();
   displayBooks();
