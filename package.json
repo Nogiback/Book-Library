@@ -1,0 +1,15 @@
+{
+  "name": "book-library",
+  "version": "1.0.0",
+  "description": "Javascript Course - Personal Book Library Project - The Odin Project",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
+}
